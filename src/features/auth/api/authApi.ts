@@ -7,6 +7,6 @@ export const authApi = {
     return instance.get("auth/me")
   },
   login (args: LoginArgs) {
-    return instance.post<BaseResponse<{userId: number}>>("auth/login", args)
+    return instance.post<BaseResponse<{userId: number, token: string}>>("auth/login", args)
   }
 }
