@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="c76c2645-7d80-486a-9360-2f6b7be6648c" name="Changes" comment="add many files">
       <change beforePath="$PROJECT_DIR$/src/features/auth/model/auth-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/model/auth-reducer.ts" afterDir="false" />
     </list>
+=======
+    <list default="true" id="c76c2645-7d80-486a-9360-2f6b7be6648c" name="Changes" comment="delete foo" />
+>>>>>>> test-foo
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,15 +76,23 @@
     "Vitest.title of specified task should be changed.executor": "Run",
     "Vitest.todolists-reducer.test.ts.executor": "Run",
     "Vitest.whether it is correct to remove a task from todolist.executor": "Run",
+<<<<<<< HEAD
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/neakhai/Documents/Yauheni/it_incubator/version_2/todolist-02/src/features/auth/api",
     "list.type.of.created.stylesheet": "CSS",
+=======
+    "git-widget-placeholder": "test-foo",
+    "last_opened_file_path": "/Users/neakhai/Documents/Yauheni/it_incubator/version_2/todolist-02/src/model",
+>>>>>>> test-foo
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+<<<<<<< HEAD
     "prettierjs.PrettierConfiguration.Package": "/Users/neakhai/Documents/Yauheni/it_incubator/version_2/todolist-02/node_modules/prettier",
+=======
+>>>>>>> test-foo
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "ts.external.directory.path": "/Users/neakhai/Documents/Yauheni/it_incubator/version_2/todolist-02/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
@@ -234,6 +246,7 @@
     <MESSAGE value="add all files" />
     <MESSAGE value="create" />
     <MESSAGE value="add many files" />
-    <option name="LAST_COMMIT_MESSAGE" value="add many files" />
+    <MESSAGE value="delete foo" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete foo" />
   </component>
 </project>
