@@ -13,11 +13,16 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import s from "./Login.module.css"
 import { LoginArgs } from "@/features/auth/api/authApi.types.ts"
 import { loginTC } from "@/features/auth/model/auth-reducer.ts"
+import { authSelectors } from "@/features/auth/model/auth-selectors.ts"
+import { useNavigate } from "react-router"
+import { Path } from "@/common/routing"
 
 export const Login = () => {
   const themeMode = useAppSelector(selectTheme)
   const theme = createThemeMode(themeMode)
   const dispatch = useAppDispatch()
+  const isLoggedIn = useAppSelector(authSelectors)
+  const navigate = useNavigate()
 
   const {
     register,
@@ -30,6 +35,10 @@ export const Login = () => {
   const onSubmit: SubmitHandler<LoginArgs> = (data) => {
     dispatch(loginTC(data))
     reset()
+  }
+
+  if (isLoggedIn) {
+    navigate(Path.Main)
   }
 
   return (
