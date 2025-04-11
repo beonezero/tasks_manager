@@ -47,3 +47,5 @@ export const loginTC = (data: LoginArgs) => (dispatch: AppDispatch) => {
       dispatch(changeAppStatus("filed"))
     })
 }
+
+// new information
