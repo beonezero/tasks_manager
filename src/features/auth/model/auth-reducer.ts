@@ -49,3 +49,5 @@ export const loginTC = (data: LoginArgs) => (dispatch: AppDispatch) => {
 }
 
 export const foo = () => {return 10}
+
+foo ()
