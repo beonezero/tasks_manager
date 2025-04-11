@@ -48,4 +48,4 @@ export const loginTC = (data: LoginArgs) => (dispatch: AppDispatch) => {
     })
 }
 
-// new information
+// new
