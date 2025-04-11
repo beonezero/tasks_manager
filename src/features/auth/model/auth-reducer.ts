@@ -47,5 +47,3 @@ export const loginTC = (data: LoginArgs) => (dispatch: AppDispatch) => {
       dispatch(changeAppStatus("filed"))
     })
 }
-
-export const foo = () => {return 10}
