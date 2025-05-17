@@ -2,7 +2,6 @@ const initialState = {
   themeMode: "light" as ThemeModeType,
   status: "idle" as RequestStatus,
   error: null as string | null,
-  auth: false as boolean
 }
 
 export const appReducer = (state: InitialAppType = initialState, action: ActionTypes): InitialAppType => {
@@ -14,7 +13,7 @@ export const appReducer = (state: InitialAppType = initialState, action: ActionT
       return { ...state, status: action.status }
     }
     case "SET_ERROR": {
-      return {...state, error: action.error}
+      return { ...state, error: action.error }
     }
     default: {
       return state

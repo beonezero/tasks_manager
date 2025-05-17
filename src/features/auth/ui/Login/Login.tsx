@@ -12,17 +12,30 @@ import TextField from "@mui/material/TextField"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import s from "./Login.module.css"
 import { LoginArgs } from "@/features/auth/api/authApi.types.ts"
-import { loginTC } from "@/features/auth/model/auth-reducer.ts"
-import { authSelectors } from "@/features/auth/model/auth-selectors.ts"
-import { useNavigate } from "react-router"
+import { loginTC } from "@/features/auth/model/auth-slice.ts"
+import { selectIsLoggedIn } from "@/features/auth/model/auth-selectors.ts"
 import { Path } from "@/common/routing"
+import { useEffect } from "react"
+import { useNavigate } from "react-router"
 
 export const Login = () => {
   const themeMode = useAppSelector(selectTheme)
   const theme = createThemeMode(themeMode)
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector(authSelectors)
+  const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate(Path.Main)
+    }
+  }, [isLoggedIn])
+
+  // или
+
+  // if (isLoggedIn) {
+  //   return <Navigate to={Path.Main}/>
+  // } (не работает этот вариант)
 
   const {
     register,
@@ -35,10 +48,6 @@ export const Login = () => {
   const onSubmit: SubmitHandler<LoginArgs> = (data) => {
     dispatch(loginTC(data))
     reset()
-  }
-
-  if (isLoggedIn) {
-    navigate(Path.Main)
   }
 
   return (

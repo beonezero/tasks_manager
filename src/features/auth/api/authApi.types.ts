@@ -4,3 +4,9 @@ export type LoginArgs = {
   rememberMe?: boolean
   captcha?: string
 }
+
+export type AuthMeDate = {
+  id: number
+  login: string
+  email: string
+}

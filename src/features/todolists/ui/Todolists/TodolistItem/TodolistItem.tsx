@@ -1,4 +1,4 @@
-import "../../../../../app/App.css"
+import "../../../../../app/App.module.css"
 import { AddItemForm } from "@/common/components/AddItemForm/AddItemForm.tsx"
 import { TodolistTitle } from "./TodolistTitle/TodolistTitle.tsx"
 import { FilterButtons } from "./FilterButtons/FilterButtons.tsx"
