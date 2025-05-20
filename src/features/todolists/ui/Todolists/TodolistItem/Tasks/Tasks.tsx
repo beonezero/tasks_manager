@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/app/hooks.ts"
 import { selectTasks } from "@/features/todolists/model/tasks-selectors.ts"
 import List from "@mui/material/List"
-import { TodolistDomainType } from "@/features/todolists/model/todolists-reducer.ts"
+import { TodolistDomainType } from "@/features/todolists/model/todolists-slice.ts"
 import { useEffect } from "react"
 import { Task as TaskType } from "@/features/todolists/api/tasksApi.types.ts"
 import { TaskStatus } from "@/features/todolists/libs/enums.ts"

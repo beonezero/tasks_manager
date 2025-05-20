@@ -6,7 +6,7 @@ import {
   removeTodolist,
   Todolists,
   todolistsReducer,
-} from "../todolists-reducer.ts"
+} from "../todolists-slice.ts"
 import { v1 } from "uuid"
 
 let startState: Todolists[]

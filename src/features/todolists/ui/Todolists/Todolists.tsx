@@ -4,7 +4,7 @@ import { TodolistItem } from "./TodolistItem/TodolistItem.tsx"
 import { useAppDispatch, useAppSelector } from "@/app/hooks.ts"
 import { selectTodolists } from "../../model/todolists-selectors.ts"
 import { useEffect } from "react"
-import { fetchTodolistsTC } from "@/features/todolists/model/todolists-reducer.ts"
+import { fetchTodolistsTC } from "@/features/todolists/model/todolists-slice.ts"
 
 export const Todolists = () => {
   const dispatch = useAppDispatch()

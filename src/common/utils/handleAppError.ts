@@ -1,4 +1,4 @@
-import { changeAppStatus, setError } from "@/app/app-reducer.ts"
+import { changeAppStatus, setError } from "@/app/app-slice.ts"
 import { AppDispatch } from "@/app/store.ts"
 import { BaseResponse } from "@/common/types"
 

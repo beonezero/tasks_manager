@@ -2,7 +2,7 @@ import { beforeEach, expect, test } from "vitest"
 
 import { v1 } from "uuid"
 import { addTask, changeTaskStatus, changeTaskTitle, removeTask, tasksReducer, TasksType } from "../tasks-reducer.ts"
-import { addTodolist, removeTodolist } from "../todolists-reducer.ts"
+import { addTodolist, removeTodolist } from "../todolists-slice.ts"
 
 let startState: TasksType
 const todolistId1 = v1()

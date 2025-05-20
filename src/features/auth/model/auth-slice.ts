@@ -1,5 +1,5 @@
 import { LoginArgs } from "@/features/auth/api/authApi.types.ts"
-import { changeAppStatus, setError } from "@/app/app-reducer.ts"
+import { changeAppStatus, setError } from "@/app/app-slice.ts"
 import { AppDispatch } from "@/app/store.ts"
 import { authApi } from "@/features/auth/api/authApi.ts"
 import { ResultCode } from "@/features/todolists/libs/enums.ts"
@@ -22,65 +22,66 @@ export const authSlice = createSlice({
   })
 })
 
+export const authReducer = authSlice.reducer
+
 export const {setIsLoggedIn, setIsInitialized} = authSlice.actions
 
 // thunks
 export const loginTC = (data: LoginArgs) => (dispatch: AppDispatch) => {
-  dispatch(changeAppStatus("loading"))
+  dispatch(changeAppStatus({status: "loading"}))
   authApi
     .login(data)
     .then((res) => {
       if (res.data.resultCode === ResultCode.Success) {
         dispatch(setIsLoggedIn({isLoggedIn: true}))
-        dispatch(changeAppStatus("succeeded"))
+        dispatch(changeAppStatus({status: "succeeded"}))
         localStorage.setItem("auth-token", res.data.data.token)
       } else {
-        dispatch(setError(res.data.messages[0]))
-        dispatch(changeAppStatus("filed"))
+        dispatch(setError({error: res.data.messages[0]}))
+        dispatch(changeAppStatus({status: "filed"}))
       }
     })
     .catch((error) => {
       handleServerError({ dispatch, error })
-      dispatch(changeAppStatus("filed"))
+      dispatch(changeAppStatus({status: "filed"}))
     })
 }
 
 export const logoutTC = () => (dispatch: AppDispatch) => {
-  dispatch(changeAppStatus("loading"))
+  dispatch(changeAppStatus({status: "loading"}))
   authApi.logout()
     .then((res) => {
       if (res.data.resultCode === ResultCode.Success) {
         dispatch(setIsLoggedIn({isLoggedIn: false}))
         localStorage.removeItem("auth-token")
-        dispatch(changeAppStatus("succeeded"))
+        dispatch(changeAppStatus({status: "succeeded"}))
       } else {
-        dispatch(setError(res.data.messages[0]))
-        dispatch(changeAppStatus("filed"))
+        dispatch(setError({error: res.data.messages[0]}))
+        dispatch(changeAppStatus({status: "filed"}))
       }
-
     })
     .catch((error) => {
       handleServerError({ dispatch, error })
-      dispatch(changeAppStatus("filed"))
+      dispatch(changeAppStatus({status: "filed"}))
     })
 }
 
 export const authMeTC = () => (dispatch: AppDispatch) => {
-  dispatch(changeAppStatus("loading"))
+  dispatch(changeAppStatus({status: "loading"}))
   authApi.authMe()
     .then((res) => {
       if (res.data.resultCode === ResultCode.Success) {
         console.log(res.data)
         dispatch(setIsLoggedIn({isLoggedIn: true}))
-        dispatch(changeAppStatus("succeeded"))
+        dispatch(changeAppStatus({status: "succeeded"}))
       } else {
-        dispatch(setError(res.data.messages[0]))
-        dispatch(changeAppStatus("filed"))
+        dispatch(setError({error: res.data.messages[0]}))
+        dispatch(changeAppStatus({status: "filed"}))
       }
     })
     .catch((error) => {
       handleServerError({ dispatch, error })
-      dispatch(changeAppStatus("filed"))
+      dispatch(changeAppStatus({status: "filed"}))
     })
     .finally(() => {
       dispatch(setIsInitialized({isInitialized: true}))

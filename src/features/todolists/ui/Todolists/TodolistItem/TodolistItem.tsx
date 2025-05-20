@@ -5,7 +5,7 @@ import { FilterButtons } from "./FilterButtons/FilterButtons.tsx"
 import { Tasks } from "./Tasks/Tasks.tsx"
 import { addTaskTC } from "../../../model/tasks-reducer.ts"
 import { useAppDispatch } from "@/app/hooks.ts"
-import { TodolistDomainType } from "@/features/todolists/model/todolists-reducer.ts"
+import { TodolistDomainType } from "@/features/todolists/model/todolists-slice.ts"
 
 type Props = {
   todolist: TodolistDomainType

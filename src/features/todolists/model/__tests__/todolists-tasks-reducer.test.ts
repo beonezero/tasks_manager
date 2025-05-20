@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
 import { tasksReducer, TasksType } from "../tasks-reducer.ts"
-import { addTodolist, Todolists, todolistsReducer } from "../todolists-reducer.ts"
+import { addTodolist, Todolists, todolistsReducer } from "../todolists-slice.ts"
 
 test("ids should be equal", () => {
   const startTasksState: TasksType = {}

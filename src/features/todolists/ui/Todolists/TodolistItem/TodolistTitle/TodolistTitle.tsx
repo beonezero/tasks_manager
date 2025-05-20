@@ -6,7 +6,7 @@ import {
   removeTodolistTC,
   TodolistDomainType,
   updateTodolistTitleTC,
-} from "@/features/todolists/model/todolists-reducer.ts"
+} from "@/features/todolists/model/todolists-slice.ts"
 
 type Props = {
   todolist: TodolistDomainType

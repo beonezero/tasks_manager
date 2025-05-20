@@ -1,10 +1,10 @@
 import { combineReducers, UnknownAction } from "redux"
-import { tasksReducer } from "../features/todolists/model/tasks-reducer.ts"
-import { todolistsReducer } from "../features/todolists/model/todolists-reducer.ts"
-import { appReducer } from "./app-reducer.ts"
+import { todolistsReducer } from "../features/todolists/model/todolists-slice.ts"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-import { authReducer } from "@/features/auth/model/auth-slice.ts"
 import { configureStore } from "@reduxjs/toolkit"
+import { appReducer } from "@/app/app-slice.ts"
+import { authReducer } from "@/features/auth/model/auth-slice.ts"
+import { tasksReducer } from "@/features/todolists/model/tasks-reducer.ts"
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния

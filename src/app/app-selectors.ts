@@ -1,5 +1,5 @@
 import { RootState } from "./store.ts"
-import { RequestStatus, ThemeModeType } from "./app-reducer.ts"
+import { RequestStatus, ThemeModeType } from "./app-slice.ts"
 
 export const selectTheme = (state: RootState): ThemeModeType => state.app.themeMode
 
