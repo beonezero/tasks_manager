@@ -21,7 +21,7 @@ export const tasksSlice = createSlice({
   reducers: (creators) => ({
     removeTask: creators.reducer<{ todolistId: string; taskId: string }>((state, action) => {
       const taskIndex = state[action.payload.todolistId].findIndex((el) => el.id === action.payload.taskId)
-      if (taskIndex) {
+      if (taskIndex !== -1) {
         state[action.payload.todolistId].splice(taskIndex, 1)
       }
     }),

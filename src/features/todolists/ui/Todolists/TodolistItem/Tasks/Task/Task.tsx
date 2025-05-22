@@ -8,6 +8,7 @@ import { getTaskSx } from "./Task.styles.ts"
 import { EditableSpan } from "@/common/components"
 import { Task as TaskType } from "@/features/todolists/api/tasksApi.types.ts"
 import { TaskStatus } from "@/features/todolists/libs/enums.ts"
+import { selectStatus } from "@/app/app-selectors.ts"
 
 type Props = {
   todolistId: string
@@ -16,7 +17,7 @@ type Props = {
 
 export const Task = ({ todolistId, task }: Props) => {
   const dispatch = useAppDispatch()
-  const isLoading = useAppSelector(state => state.app.status)
+  const isLoading = useAppSelector(selectStatus)
 
   const changeTaskTitleEditableSpanCallBack = (title: string) => {
     dispatch(updateTaskTitleTC({ task, title }))
