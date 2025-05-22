@@ -4,7 +4,7 @@ import { ThunkAction, ThunkDispatch } from "redux-thunk"
 import { configureStore } from "@reduxjs/toolkit"
 import { appReducer } from "@/app/app-slice.ts"
 import { authReducer } from "@/features/auth/model/auth-slice.ts"
-import { tasksReducer } from "@/features/todolists/model/tasks-reducer.ts"
+import { tasksReducer } from "@/features/todolists/model/tasks-slice.ts"
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния

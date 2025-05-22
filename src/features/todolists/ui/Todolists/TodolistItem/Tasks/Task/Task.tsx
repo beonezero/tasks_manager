@@ -2,8 +2,8 @@ import Checkbox from "@mui/material/Checkbox"
 import IconButton from "@mui/material/IconButton"
 import DeleteIcon from "@mui/icons-material/Delete"
 import ListItem from "@mui/material/ListItem"
-import { removeTaskTC, updateTaskStatusTC, updateTaskTitleTC } from "../../../../../model/tasks-reducer.ts"
-import { useAppDispatch } from "@/app/hooks.ts"
+import { removeTaskTC, updateTaskStatusTC, updateTaskTitleTC } from "../../../../../model/tasks-slice.ts"
+import { useAppDispatch, useAppSelector } from "@/app/hooks.ts"
 import { getTaskSx } from "./Task.styles.ts"
 import { EditableSpan } from "@/common/components"
 import { Task as TaskType } from "@/features/todolists/api/tasksApi.types.ts"
@@ -16,6 +16,7 @@ type Props = {
 
 export const Task = ({ todolistId, task }: Props) => {
   const dispatch = useAppDispatch()
+  const isLoading = useAppSelector(state => state.app.status)
 
   const changeTaskTitleEditableSpanCallBack = (title: string) => {
     dispatch(updateTaskTitleTC({ task, title }))
@@ -38,7 +39,7 @@ export const Task = ({ todolistId, task }: Props) => {
           defaultChecked
           color="success"
         />
-        <EditableSpan title={task.title} changeTitle={changeTaskTitleEditableSpanCallBack} />
+        <EditableSpan disabled={isLoading === "loading"} title={task.title} changeTitle={changeTaskTitleEditableSpanCallBack} />
       </div>
       <IconButton onClick={removeTaskHandler} aria-label="delete" size={"small"}>
         <DeleteIcon />

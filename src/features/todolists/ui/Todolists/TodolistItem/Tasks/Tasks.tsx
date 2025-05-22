@@ -6,7 +6,7 @@ import { useEffect } from "react"
 import { Task as TaskType } from "@/features/todolists/api/tasksApi.types.ts"
 import { TaskStatus } from "@/features/todolists/libs/enums.ts"
 import { Task } from "@/features/todolists/ui/Todolists/TodolistItem/Tasks/Task/Task.tsx"
-import { fetchTasksTC } from "@/features/todolists/model/tasks-reducer.ts"
+import { fetchTasksTC } from "@/features/todolists/model/tasks-slice.ts"
 
 type Props = {
   todolist: TodolistDomainType

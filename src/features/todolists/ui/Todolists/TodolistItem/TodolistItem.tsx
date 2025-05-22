@@ -3,7 +3,7 @@ import { AddItemForm } from "@/common/components/AddItemForm/AddItemForm.tsx"
 import { TodolistTitle } from "./TodolistTitle/TodolistTitle.tsx"
 import { FilterButtons } from "./FilterButtons/FilterButtons.tsx"
 import { Tasks } from "./Tasks/Tasks.tsx"
-import { addTaskTC } from "../../../model/tasks-reducer.ts"
+import { addTaskTC } from "../../../model/tasks-slice.ts"
 import { useAppDispatch } from "@/app/hooks.ts"
 import { TodolistDomainType } from "@/features/todolists/model/todolists-slice.ts"
 
