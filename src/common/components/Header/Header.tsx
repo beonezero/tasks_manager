@@ -6,12 +6,10 @@ import IconButton from "@mui/material/IconButton"
 import MenuIcon from "@mui/icons-material/Menu"
 import { MenuButton } from "@/common/components"
 import Switch from "@mui/material/Switch"
-import { changeThemeMode } from "@/app/app-slice.ts"
+import { changeThemeMode, selectStatus, selectTheme } from "@/app/app-slice.ts"
 import { useAppDispatch, useAppSelector } from "@/app/hooks.ts"
-import { selectStatus, selectTheme } from "@/app/app-selectors.ts"
 import LinearProgress from "@mui/material/LinearProgress"
-import { logoutTC } from "@/features/auth/model/auth-slice.ts"
-import { selectIsLoggedIn } from "@/features/auth/model/auth-selectors.ts"
+import { logoutTC, selectIsLoggedIn } from "@/features/auth/model/auth-slice.ts"
 
 export const Header = () => {
   const dispatch = useAppDispatch()
@@ -20,7 +18,7 @@ export const Header = () => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
 
   const changeThemeModeHandler = () => {
-    dispatch(changeThemeMode(themeMode === "light" ? "dark" : "light"))
+    dispatch(changeThemeMode(themeMode === "light" ? {themeMode: "dark"} : {themeMode: "light"}))
   }
 
   const onClickLogoutHandler = () => {

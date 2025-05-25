@@ -1,22 +1,20 @@
-import { combineReducers, UnknownAction } from "redux"
-import { todolistsReducer } from "../features/todolists/model/todolists-slice.ts"
+import { todolistsReducer, todolistsSlice } from "../features/todolists/model/todolists-slice.ts"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-import { configureStore } from "@reduxjs/toolkit"
-import { appReducer } from "@/app/app-slice.ts"
-import { authReducer } from "@/features/auth/model/auth-slice.ts"
-import { tasksReducer } from "@/features/todolists/model/tasks-slice.ts"
+import { configureStore, UnknownAction } from "@reduxjs/toolkit"
+import { appReducer, appSlice } from "@/app/app-slice.ts"
+import { authReducer, authSlice } from "@/features/auth/model/auth-slice.ts"
+import { tasksReducer, tasksSlice } from "@/features/todolists/model/tasks-slice.ts"
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
-const rootReducer = combineReducers({
-  tasks: tasksReducer,
-  todolists: todolistsReducer,
-  app: appReducer,
-  auth: authReducer
-})
 
 export const store = configureStore({
-  reducer: rootReducer
+  reducer: {
+    [tasksSlice.name]: tasksReducer,
+    [todolistsSlice.name]: todolistsReducer,
+    [appSlice.name]: appReducer,
+    [authSlice.name]: authReducer
+  }
 })
 // определить автоматически тип всего объекта состояния
 export type RootState = ReturnType<typeof store.getState>

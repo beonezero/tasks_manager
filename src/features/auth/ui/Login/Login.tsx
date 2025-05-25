@@ -1,5 +1,4 @@
 import { useAppDispatch, useAppSelector } from "@/app/hooks.ts"
-import { selectTheme } from "@/app/app-selectors.ts"
 import { createThemeMode } from "@/common/theme/theme.ts"
 import Button from "@mui/material/Button"
 import Checkbox from "@mui/material/Checkbox"
@@ -12,11 +11,11 @@ import TextField from "@mui/material/TextField"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import s from "./Login.module.css"
 import { LoginArgs } from "@/features/auth/api/authApi.types.ts"
-import { loginTC } from "@/features/auth/model/auth-slice.ts"
-import { selectIsLoggedIn } from "@/features/auth/model/auth-selectors.ts"
+import { loginTC, selectIsLoggedIn } from "@/features/auth/model/auth-slice.ts"
 import { Path } from "@/common/routing"
 import { useEffect } from "react"
 import { useNavigate } from "react-router"
+import { selectTheme } from "@/app/app-slice.ts"
 
 export const Login = () => {
   const themeMode = useAppSelector(selectTheme)

@@ -1,12 +1,11 @@
 import { useAppDispatch, useAppSelector } from "@/app/hooks.ts"
-import { selectTasks } from "@/features/todolists/model/tasks-selectors.ts"
 import List from "@mui/material/List"
 import { TodolistDomainType } from "@/features/todolists/model/todolists-slice.ts"
 import { useEffect } from "react"
 import { Task as TaskType } from "@/features/todolists/api/tasksApi.types.ts"
 import { TaskStatus } from "@/features/todolists/libs/enums.ts"
 import { Task } from "@/features/todolists/ui/Todolists/TodolistItem/Tasks/Task/Task.tsx"
-import { fetchTasksTC } from "@/features/todolists/model/tasks-slice.ts"
+import { fetchTasksTC, selectTasks } from "@/features/todolists/model/tasks-slice.ts"
 
 type Props = {
   todolist: TodolistDomainType
@@ -35,10 +34,10 @@ export const Tasks = ({ todolist }: Props) => {
 
   return (
     <List>
-      {tasksForTodolist.length === 0 ? (
+      {tasksForTodolist?.length === 0 ? (
         <p>Тасок нет</p>
       ) : (
-        tasksForTodolist.map((task) => {
+        tasksForTodolist?.map((task) => {
           return <Task key={task.id} task={task} todolistId={todolist.id} />
         })
       )}

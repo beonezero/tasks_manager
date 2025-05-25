@@ -7,7 +7,7 @@ import { createTodolistTC } from "@/features/todolists/model/todolists-slice.ts"
 import { useEffect } from "react"
 import { useNavigate } from "react-router"
 import { Path } from "@/common/routing"
-import { selectIsLoggedIn } from "@/features/auth/model/auth-selectors.ts"
+import { selectIsLoggedIn } from "@/features/auth/model/auth-slice.ts"
 export const Main = () => {
   const dispatch = useAppDispatch()
   const isLoggedIn = useAppSelector(selectIsLoggedIn)

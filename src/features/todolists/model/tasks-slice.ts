@@ -30,7 +30,7 @@ export const tasksSlice = createSlice({
     }),
     updateTask: creators.reducer<{ task: Task }>((state, action) => {
       const taskIndex = state[action.payload.task.todoListId].findIndex(el => el.id === action.payload.task.id)
-      if (taskIndex) {
+      if (taskIndex !== -1) {
         state[action.payload.task.todoListId][taskIndex] = action.payload.task
       }
     }),
@@ -38,11 +38,16 @@ export const tasksSlice = createSlice({
       state[action.payload.todolistId] = action.payload.tasks
     })
   }),
+  selectors: {
+    selectTasks: state => state
+  }
 })
 
 export const tasksReducer = tasksSlice.reducer
 
 export const {setTasks, updateTask, addTask, removeTask} = tasksSlice.actions
+
+export const {selectTasks} = tasksSlice.selectors
 
 // Thunks
 

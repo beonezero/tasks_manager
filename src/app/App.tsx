@@ -2,12 +2,11 @@ import { ErrorSnackbar, Header } from "@/common/components"
 import { CircularProgress, CssBaseline, ThemeProvider } from "@mui/material"
 import { useAppDispatch, useAppSelector } from "./hooks.ts"
 import { createThemeMode } from "../common/theme/theme.ts"
-import { selectTheme } from "./app-selectors.ts"
 import { Routing } from "@/common/routing"
 import { useEffect } from "react"
-import { authMeTC } from "@/features/auth/model/auth-slice.ts"
+import { authMeTC, selectIsInitialized } from "@/features/auth/model/auth-slice.ts"
 import s from "@/app/App.module.css"
-import { selectIsInitialized } from "@/features/auth/model/auth-selectors.ts"
+import { selectTheme } from "@/app/app-slice.ts"
 
 export const App = () => {
   const themeMode = useAppSelector(selectTheme)

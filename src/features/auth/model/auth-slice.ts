@@ -19,12 +19,19 @@ export const authSlice = createSlice({
     setIsInitialized: creators.reducer<{isInitialized: boolean}>((state, action) => {
         state.isInitialized = action.payload.isInitialized
     })
-  })
+  }),
+  selectors: {
+    selectIsLoggedIn: (sliceState) => sliceState.isLoggedIn,
+    selectIsInitialized: (sliceState) => sliceState.isInitialized,
+
+  }
 })
 
 export const authReducer = authSlice.reducer
 
 export const {setIsLoggedIn, setIsInitialized} = authSlice.actions
+
+export const {selectIsLoggedIn, selectIsInitialized} = authSlice.selectors
 
 // thunks
 export const loginTC = (data: LoginArgs) => (dispatch: AppDispatch) => {
@@ -71,7 +78,6 @@ export const authMeTC = () => (dispatch: AppDispatch) => {
   authApi.authMe()
     .then((res) => {
       if (res.data.resultCode === ResultCode.Success) {
-        console.log(res.data)
         dispatch(setIsLoggedIn({isLoggedIn: true}))
         dispatch(changeAppStatus({status: "succeeded"}))
       } else {

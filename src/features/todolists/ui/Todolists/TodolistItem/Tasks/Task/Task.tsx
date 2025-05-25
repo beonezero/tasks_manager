@@ -8,7 +8,7 @@ import { getTaskSx } from "./Task.styles.ts"
 import { EditableSpan } from "@/common/components"
 import { Task as TaskType } from "@/features/todolists/api/tasksApi.types.ts"
 import { TaskStatus } from "@/features/todolists/libs/enums.ts"
-import { selectStatus } from "@/app/app-selectors.ts"
+import { selectStatus } from "@/app/app-slice.ts"
 
 type Props = {
   todolistId: string
