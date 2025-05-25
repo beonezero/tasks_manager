@@ -1,9 +1,9 @@
 import { expect, test } from "vitest"
 import { tasksReducer} from "../tasks-slice.ts"
-import { addTodolist, TodolistDomainType, todolistsReducer } from "../todolists-slice.ts"
+import { addTodolist, removeTodolist, TodolistDomainType, todolistsReducer } from "../todolists-slice.ts"
 import { Tasks } from "@/features/todolists/api/tasksApi.types.ts"
 
-test("ids should be equal", () => {
+test("check if todolist is added to tasksSlice and todolistsSlice at the same time", () => {
   const startTasksState: Tasks = {}
   const startTodolistsState: TodolistDomainType[] = []
 
@@ -23,4 +23,26 @@ test("ids should be equal", () => {
 
   expect(idFromTasks).toBe(action.payload.todolist.id)
   expect(idFromTodolists).toBe(action.payload.todolist.id)
+})
+
+test("check if todolist is deleted in tasksSlice and todolistsSlice at the same time", () => {
+  const startTasksState: Tasks = {"todolistIdTest": []}
+  const startTodolistsState: TodolistDomainType[] = [{
+    id: "todolistIdTest",
+    title: "new Title",
+    addedDate: "10.04.1996",
+    order: 1,
+    filter: "All",
+    entityStatus: "idle"
+  }]
+
+  const action = removeTodolist({todolistId: "todolistIdTest"})
+
+  console.log(action)
+
+  const endTasksState: Tasks = tasksReducer(startTasksState, action)
+  const endTodolistsState: TodolistDomainType[] = todolistsReducer(startTodolistsState, action)
+
+  expect(Object.keys(endTasksState).length).toBe(0)
+  expect(endTodolistsState.length).toBe(0)
 })
