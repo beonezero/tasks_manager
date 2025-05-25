@@ -38,8 +38,6 @@ test("check if todolist is deleted in tasksSlice and todolistsSlice at the same 
 
   const action = removeTodolist({todolistId: "todolistIdTest"})
 
-  console.log(action)
-
   const endTasksState: Tasks = tasksReducer(startTasksState, action)
   const endTodolistsState: TodolistDomainType[] = todolistsReducer(startTodolistsState, action)
 
