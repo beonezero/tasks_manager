@@ -1,8 +1,12 @@
 import type { Todolist } from "./todolistsApi.types.ts"
 import { instance } from "@/common/instance/instance.ts"
 import { BaseResponse } from "@/common/types"
+import { createApi } from "@reduxjs/toolkit/query/react"
 
-export const todolistsApi = {
+export const todolistsApi = createApi({
+})
+
+export const _todolistsApi = {
   getTodolists: () => {
     return instance.get<Todolist[]>("todo-lists")
   },
