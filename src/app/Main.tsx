@@ -1,15 +1,15 @@
 import Grid from "@mui/material/Grid2"
 import { AddItemForm } from "@/common/components"
 import Container from "@mui/material/Container"
-import { useAppDispatch, useAppSelector } from "./hooks.ts"
+import { useAppSelector } from "./hooks.ts"
 import { Todolists } from "../features/todolists/ui/Todolists/Todolists.tsx"
-import { createTodolistTC } from "@/features/todolists/model/todolists-slice.ts"
 import { useEffect } from "react"
 import { useNavigate } from "react-router"
 import { Path } from "@/common/routing"
 import { selectIsLoggedIn } from "@/features/auth/model/auth-slice.ts"
+import { useAddTodolistMutation } from "@/features/todolists/api/todolistsApi.ts"
 export const Main = () => {
-  const dispatch = useAppDispatch()
+  const [addTodolist] = useAddTodolistMutation()
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const navigate = useNavigate()
 
@@ -20,7 +20,7 @@ export const Main = () => {
   }, [isLoggedIn])
 
   const addTodolistApp = (title: string) => {
-    dispatch(createTodolistTC(title))
+    addTodolist(title)
   }
 
   return (

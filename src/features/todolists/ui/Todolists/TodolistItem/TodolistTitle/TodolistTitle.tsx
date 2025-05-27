@@ -1,25 +1,25 @@
 import { EditableSpan } from "@/common/components"
 import IconButton from "@mui/material/IconButton"
 import DeleteIcon from "@mui/icons-material/Delete"
-import { useAppDispatch } from "@/app/hooks.ts"
 import {
-  removeTodolistTC,
   TodolistDomainType,
-  updateTodolistTitleTC,
 } from "@/features/todolists/model/todolists-slice.ts"
+import { useRemoveTodolistMutation, useUpdateTodolistMutation } from "@/features/todolists/api/todolistsApi.ts"
 
 type Props = {
   todolist: TodolistDomainType
 }
 
 export const TodolistTitle = ({ todolist }: Props) => {
-  const dispatch = useAppDispatch()
+  const [removeTodolist] = useRemoveTodolistMutation()
+  const [updateTodolistTitle] = useUpdateTodolistMutation()
+
   const removeTodolistHandler = () => {
-    dispatch(removeTodolistTC(todolist.id))
+    removeTodolist(todolist.id)
   }
 
   const changeTodolistTitleEditableSpanCallBack = (title: string) => {
-    dispatch(updateTodolistTitleTC({ todolistId: todolist.id, title }))
+    updateTodolistTitle({ todolistId: todolist.id, title })
   }
   return (
     <h3>
