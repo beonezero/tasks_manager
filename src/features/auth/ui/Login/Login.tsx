@@ -11,18 +11,21 @@ import TextField from "@mui/material/TextField"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import s from "./Login.module.css"
 import { LoginArgs } from "@/features/auth/api/authApi.types.ts"
-import { loginTC, selectIsLoggedIn } from "@/features/auth/model/auth-slice.ts"
 import { Path } from "@/common/routing"
 import { useEffect } from "react"
 import { useNavigate } from "react-router"
-import { selectTheme } from "@/app/app-slice.ts"
+import { changeAppStatus, selectIsLoggedIn, selectTheme, setIsLoggedIn } from "@/app/app-slice.ts"
+import { useLoginMutation } from "@/features/auth/api/authApi.ts"
+import { ResultCode } from "@/features/todolists/libs/enums.ts"
 
 export const Login = () => {
   const themeMode = useAppSelector(selectTheme)
   const theme = createThemeMode(themeMode)
-  const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const navigate = useNavigate()
+  const isLoggedIn = useAppSelector(selectIsLoggedIn)
+  const dispatch = useAppDispatch()
+
+  const [login] = useLoginMutation()
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -45,8 +48,14 @@ export const Login = () => {
   } = useForm<LoginArgs>({ defaultValues: { rememberMe: false } })
 
   const onSubmit: SubmitHandler<LoginArgs> = (data) => {
-    dispatch(loginTC(data))
-    reset()
+    login(data).then((res) => {
+      if (res.data?.resultCode === ResultCode.Success) {
+        dispatch(setIsLoggedIn({ isLoggedIn: true }))
+        dispatch(changeAppStatus({ status: "succeeded" }))
+        localStorage.setItem("auth-token", res.data.data.token)
+        reset()
+      }
+    })
   }
 
   return (

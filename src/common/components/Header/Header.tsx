@@ -6,23 +6,36 @@ import IconButton from "@mui/material/IconButton"
 import MenuIcon from "@mui/icons-material/Menu"
 import { MenuButton } from "@/common/components"
 import Switch from "@mui/material/Switch"
-import { changeThemeMode, selectStatus, selectTheme } from "@/app/app-slice.ts"
+import {
+  changeThemeMode,
+  selectIsLoggedIn,
+  selectStatus,
+  selectTheme,
+  setIsLoggedIn
+} from "@/app/app-slice.ts"
 import { useAppDispatch, useAppSelector } from "@/app/hooks.ts"
 import LinearProgress from "@mui/material/LinearProgress"
-import { logoutTC, selectIsLoggedIn } from "@/features/auth/model/auth-slice.ts"
+import { useLogOutMutation } from "@/features/auth/api/authApi.ts"
+import { ResultCode } from "@/features/todolists/libs/enums.ts"
 
 export const Header = () => {
   const dispatch = useAppDispatch()
   const status = useAppSelector(selectStatus)
   const themeMode = useAppSelector(selectTheme)
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
+  const [logout] = useLogOutMutation()
 
   const changeThemeModeHandler = () => {
     dispatch(changeThemeMode(themeMode === "light" ? {themeMode: "dark"} : {themeMode: "light"}))
   }
 
   const onClickLogoutHandler = () => {
-    dispatch(logoutTC())
+    logout().then((res) => {
+      if (res.data?.resultCode === ResultCode.Success) {
+        dispatch(setIsLoggedIn({isLoggedIn: false}))
+        localStorage.removeItem("auth-token")
+      }
+    })
   }
 
   // const theme = useTheme()

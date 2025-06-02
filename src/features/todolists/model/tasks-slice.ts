@@ -4,20 +4,19 @@ import { Task, Tasks, UpdateTaskModel } from "@/features/todolists/api/tasksApi.
 import { ResultCode, TaskStatus } from "@/features/todolists/libs/enums.ts"
 import { changeAppStatus, setError } from "@/app/app-slice.ts"
 import { createSlice } from "@reduxjs/toolkit"
-import { addTodolist, removeTodolist } from "@/features/todolists/model/todolists-slice.ts"
 
 export const tasksSlice = createSlice({
   name: "tasks",
   initialState: {} as Tasks,
-  extraReducers: (builder) => {
-    builder
-      .addCase(addTodolist, (state, action) => {
-        state[action.payload.todolist.id] = []
-      })
-      .addCase(removeTodolist, (state, action) => {
-        delete state[action.payload.todolistId]
-      })
-  },
+  // extraReducers: (builder) => {
+  //   builder
+  //     .addCase(addTodolist, (state, action) => {
+  //       state[action.payload.todolist.id] = []
+  //     })
+  //     .addCase(removeTodolist, (state, action) => {
+  //       delete state[action.payload.todolistId]
+  //     })
+  // },
   reducers: (creators) => ({
     removeTask: creators.reducer<{ todolistId: string; taskId: string }>((state, action) => {
       const taskIndex = state[action.payload.todolistId].findIndex((el) => el.id === action.payload.taskId)

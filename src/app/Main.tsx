@@ -6,8 +6,8 @@ import { Todolists } from "../features/todolists/ui/Todolists/Todolists.tsx"
 import { useEffect } from "react"
 import { useNavigate } from "react-router"
 import { Path } from "@/common/routing"
-import { selectIsLoggedIn } from "@/features/auth/model/auth-slice.ts"
 import { useAddTodolistMutation } from "@/features/todolists/api/todolistsApi.ts"
+import { selectIsLoggedIn } from "@/app/app-slice.ts"
 export const Main = () => {
   const [addTodolist] = useAddTodolistMutation()
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
