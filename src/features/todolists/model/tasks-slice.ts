@@ -1,9 +1,9 @@
 import { AppDispatch, AppThunk } from "@/app/store.ts"
-import { tasksApi } from "@/features/todolists/api/tasksApi.ts"
 import { Task, Tasks, UpdateTaskModel } from "@/features/todolists/api/tasksApi.types.ts"
 import { ResultCode, TaskStatus } from "@/features/todolists/libs/enums.ts"
 import { changeAppStatus, setError } from "@/app/app-slice.ts"
 import { createSlice } from "@reduxjs/toolkit"
+import { _tasksApi } from "@/features/todolists/api/tasksApi.ts"
 
 export const tasksSlice = createSlice({
   name: "tasks",
@@ -51,21 +51,21 @@ export const {selectTasks} = tasksSlice.selectors
 // Thunks
 
 export const fetchTasksTC = (todolistId: string) => (dispatch: AppDispatch) => {
-  tasksApi.getTasks(todolistId).then((res) => {
+  _tasksApi.getTasks(todolistId).then((res) => {
     dispatch(setTasks({ tasks: res.data.items, todolistId }))
   })
 }
 
 export const removeTaskTC = (payload: { todolistId: string; taskId: string }) => (dispatch: AppDispatch) => {
   const { todolistId, taskId } = payload
-  tasksApi.removeTask({ todolistId, taskId }).then(() => {
+  _tasksApi.removeTask({ todolistId, taskId }).then(() => {
     dispatch(removeTask({ todolistId, taskId }))
   })
 }
 
 export const addTaskTC = (payload: { todolistId: string; title: string }) => (dispatch: AppDispatch) => {
   dispatch(changeAppStatus({ status: "loading" }))
-  tasksApi.createTask(payload).then((res) => {
+  _tasksApi.createTask(payload).then((res) => {
     if (res.data.resultCode === ResultCode.Success) {
       dispatch(addTask({ task: res.data.data.item }))
     } else {
@@ -87,7 +87,7 @@ export const updateTaskTitleTC =
       startDate,
       status,
     }
-    tasksApi.updateTask({ todolistId: todoListId, taskId: id, updateTaskModel }).then((res) => {
+    _tasksApi.updateTask({ todolistId: todoListId, taskId: id, updateTaskModel }).then((res) => {
       dispatch(updateTask({ task: res.data.data.item }))
     })
   }
@@ -104,7 +104,7 @@ export const updateTaskStatusTC =
       startDate,
       status: payload.status,
     }
-    tasksApi.updateTask({ todolistId: todoListId, taskId: id, updateTaskModel }).then((res) => {
+    _tasksApi.updateTask({ todolistId: todoListId, taskId: id, updateTaskModel }).then((res) => {
       dispatch(updateTask({ task: res.data.data.item }))
     })
   }
