@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from "@/app/hooks.ts"
 import LinearProgress from "@mui/material/LinearProgress"
 import { useLogOutMutation } from "@/features/auth/api/authApi.ts"
 import { ResultCode } from "@/features/todolists/libs/enums.ts"
+import { baseApi } from "@/app/baseApi.ts"
 
 export const Header = () => {
   const dispatch = useAppDispatch()
@@ -34,6 +35,9 @@ export const Header = () => {
       if (res.data?.resultCode === ResultCode.Success) {
         dispatch(setIsLoggedIn({isLoggedIn: false}))
         localStorage.removeItem("auth-token")
+
+        // удаляем стэйт при вылогировании
+        dispatch(baseApi.util.resetApiState())
       }
     })
   }
