@@ -31,15 +31,18 @@ export const Header = () => {
   }
 
   const onClickLogoutHandler = () => {
-    logout().then((res) => {
+    logout()
+      .then((res) => {
       if (res.data?.resultCode === ResultCode.Success) {
         dispatch(setIsLoggedIn({isLoggedIn: false}))
         localStorage.removeItem("auth-token")
-
-        // удаляем стэйт при вылогировании
-        dispatch(baseApi.util.resetApiState())
+        //dispatch(baseApi.util.resetApiState())
       }
     })
+      .then(() => {
+        // удаляем стэйт при вылогировании
+        dispatch(baseApi.util.invalidateTags(["Todolist", "Task"]))
+      })
   }
 
   // const theme = useTheme()

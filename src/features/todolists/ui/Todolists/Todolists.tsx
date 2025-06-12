@@ -7,6 +7,8 @@ export const Todolists = () => {
 
   const { data: todolists } = useGetTodolistsQuery()
 
+  console.log(useGetTodolistsQuery())
+
   return (
     <>
       {todolists?.map((el) => (
