@@ -4,12 +4,13 @@ import { TaskStatus } from "@/features/todolists/libs/enums.ts"
 import { Task } from "@/features/todolists/ui/Todolists/TodolistItem/Tasks/Task/Task.tsx"
 import { TodolistDomainType } from "@/features/todolists/api/todolistsApi.types.ts"
 import { useGetTasksQuery } from "@/features/todolists/api/tasksApi.ts"
+import { TasksSkeleton } from "@/features/todolists/ui/skeletons/TasksSkeleton/TasksSkeleton.tsx"
 
 type Props = {
   todolist: TodolistDomainType
 }
 export const Tasks = ({ todolist }: Props) => {
-  const { data } = useGetTasksQuery(todolist.id)
+  const { data, isLoading } = useGetTasksQuery(todolist.id)
 
   const currentTasksBlock = (tasksForFilter: TaskType[]): TaskType[] => {
     switch (todolist.filter) {
@@ -26,6 +27,10 @@ export const Tasks = ({ todolist }: Props) => {
 
   const tasks = data?.items || []
   const tasksForTodolist = currentTasksBlock(tasks)
+
+  if (isLoading) {
+    return <TasksSkeleton />
+  }
 
   return (
     <List>
